@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: favooks-db
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: favooks
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  # server:
+  #   container_name: favooks-server
+  #   build: ./
+  #   restart: always
+  #   ports:
+  #     - '5000:5000'
+  #   volumes:
+  #     - /Users/admin/apps/favooks:/usr/favooks
+  #   environment:
+  #     NODE_PATH: ./
+  #   depends_on:
+  #     - db
+
+volumes:
+  dbdata:

@@ -3,7 +3,7 @@
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "",
+  "password": "postgres",
   "database": "favooks",
   "entities": ["entities/*.ts"],
   "logging": true,

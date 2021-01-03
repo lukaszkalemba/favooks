@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc -p .",
     "start": "NODE_PATH=./dist node dist/index.js",
-    "dev": "NODE_PATH=./ nodemon index.ts"
+    "dev": "NODE_PATH=./ nodemon index.ts",
+    "docker:build": "docker-compose up --build -d",
+    "docker:run": "docker-compose up -d"
   },
   "keywords": [],
   "author": "",
