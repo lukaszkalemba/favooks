@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+import { Book } from 'entities/Book';
 
 // @desc    Get all books
 // @route   GET /api/v1/books
@@ -8,9 +10,11 @@ export const books_get_all = async (
   res: Response
 ): Promise<Response> => {
   try {
+    const books = await getRepository(Book).find();
+
     return res.status(200).json({
       success: true,
-      data: null,
+      data: books,
     });
   } catch (err) {
     return res.status(500).json({
