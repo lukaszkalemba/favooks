@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+} from 'typeorm';
+import { Author } from 'entities/Author';
 
 @Entity({ name: 'book' })
 export class Book extends BaseEntity {
@@ -8,6 +15,6 @@ export class Book extends BaseEntity {
   @Column({ unique: true })
   title: string;
 
-  @Column()
-  author: string;
+  @ManyToOne(() => Author, (author) => author.books)
+  author: Author;
 }
