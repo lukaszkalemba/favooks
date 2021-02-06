@@ -12,7 +12,7 @@ export const books_get_all = async (
   try {
     const qb = getRepository(Book)
       .createQueryBuilder('book')
-      .leftJoinAndSelect('book.author', 'author')
+      .leftJoin('book.author', 'author')
       .select(['book.id', 'book.title', 'author.name']);
 
     const [data] = await qb.getManyAndCount();
