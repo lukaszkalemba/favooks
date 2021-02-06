@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Author } from 'entities/Author';
 
@@ -15,6 +16,9 @@ export class Book extends BaseEntity {
   @Column({ unique: true })
   title: string;
 
+  @Column()
+  authorId: number;
   @ManyToOne(() => Author, (author) => author.books)
+  @JoinColumn({ name: 'authorId' })
   author: Author;
 }

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
 import { Book } from 'entities/Book';
 
 // @desc    Get all books
@@ -9,11 +10,16 @@ export const books_get_all = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const books = await Book.find();
+    const qb = getRepository(Book)
+      .createQueryBuilder('book')
+      .leftJoinAndSelect('book.author', 'author')
+      .select(['book.id', 'book.title', 'author.name']);
+
+    const [data] = await qb.getManyAndCount();
 
     return res.status(200).json({
       success: true,
-      data: books,
+      data,
     });
   } catch (err) {
     return res.status(500).json({
