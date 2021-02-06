@@ -5,7 +5,7 @@
   "username": "postgres",
   "password": "postgres",
   "database": "favooks",
-  "entities": ["entities/*.ts"],
+  "entities": ["dist/entities/**/*.js"],
   "logging": true,
   "synchronize": true
 }
